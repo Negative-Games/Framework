@@ -53,7 +53,7 @@ public class HasteBin {
     public String post(@NotNull String text, boolean raw) throws IOException {
         byte[] postData = text.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
-        String requestURL = "https://paste.deltapvp.club/documents";
+        String requestURL = "https://bin.hypews.com/documents";
         URL url = new URL(requestURL);
         HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
         conn.setDoOutput(true);
