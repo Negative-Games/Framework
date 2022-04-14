@@ -31,11 +31,12 @@ import lombok.Setter;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 @Getter
 @Setter
-public class Message {
+public class Message implements Serializable {
 
     private final String initial;
     private String message;
@@ -129,6 +130,15 @@ public class Message {
         }
         Utils.broadcast(getMessage());
         setMessage(getInitial());
+    }
+
+    /**
+     * Returns the string
+     * @return the defined message
+     */
+    @Override
+    public String toString() {
+        return getMessage();
     }
 
 }
