@@ -16,8 +16,9 @@ public class FloodgateMenu {
     private final String title;
     private ModalFormResponse response;
     private ModalForm form;
+
     /**
-     * Create a new floodgate menu!
+     * Create a new floodgate menu
      *
      * @param content The content of the menu
      * @param title The title of the menu
