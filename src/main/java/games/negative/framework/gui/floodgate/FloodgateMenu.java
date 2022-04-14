@@ -68,4 +68,5 @@ public class FloodgateMenu {
     public void acknowledge() {
         responded = false;
     }
+
 }
