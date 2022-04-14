@@ -2,6 +2,7 @@ package games.negative.framework.gui.floodgate;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang.Validate;
 import org.geysermc.cumulus.ModalForm;
 import org.geysermc.cumulus.response.ModalFormResponse;
 import org.geysermc.floodgate.api.FloodgateApi;
@@ -59,10 +60,8 @@ public class FloodgateMenu {
      * @return the response from the player
      * @throws Exception if they haven't responded yet!
      */
-    public ModalFormResponse getResponse() throws Exception {
-        if (response == null) {
-            throw new Exception("There was no response!");
-        }
+    public ModalFormResponse getResponse()  {
+        Validate.notNull(response, "There was no response");
         return response;
     }
     public void acknowledge() {
