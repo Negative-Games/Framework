@@ -24,17 +24,18 @@
  */
 
 package games.negative.framework.util;
-
-
 import org.jetbrains.annotations.NotNull;
 
-import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.*;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 
 /**
  * HasteBin Utility
@@ -47,14 +48,31 @@ import java.nio.charset.StandardCharsets;
  */
 
 public class HasteBin {
+    String binURL = "https://bin.hypews.com/";
+    boolean useSSL = true;
+
+    /**
+     * Create a new HasteBin instance with your custom HasteBin (optional)
+     *
+     * @param binURL The exact URL to your pastebin - for example https://bin.seailz.com/
+     * @author Seailz
+     */
+    public HasteBin(@NotNull String binURL, boolean SSL) {
+        if (!binURL.endsWith("/")) binURL = binURL + "/";
+        if (!binURL.contains("https://")) binURL = "https://" + binURL;
+
+        this.binURL = binURL;
+        useSSL = SSL;
+    }
+
     public HasteBin() {
     }
 
     public String post(@NotNull String text, boolean raw) throws IOException {
         byte[] postData = text.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
-        String requestURL = "https://bin.hypews.com/documents";
-        URL url = new URL(requestURL);
+        URL url = new URL(binURL + "documents");
+        if (!useSSL) disableSslVerification();
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setInstanceFollowRedirects(false);
@@ -77,10 +95,51 @@ public class HasteBin {
 
         if (response.contains("\"key\"")) {
             response = response.substring(response.indexOf(":") + 2, response.length() - 2);
-            String postURL = raw ? "https://bin.hypews.com/raw/" : "https://bin.hypews.com/";
+            String postURL = raw ? binURL + "raw/" : binURL;
             response = postURL + response;
         }
 
         return response;
+    }
+
+    /**
+     * disable SSL
+     * @author WolfgangFahl
+     */
+    private void disableSslVerification() {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return null;
+                        }
+
+                        public void checkClientTrusted(X509Certificate[] certs,
+                                                       String authType) {
+                        }
+
+                        public void checkServerTrusted(X509Certificate[] certs,
+                                                       String authType) {
+                        }
+                    }};
+
+            // Install the all-trusting trust manager
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+            // Create all-trusting host name verifier
+            HostnameVerifier allHostsValid = new HostnameVerifier() {
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            };
+
+            // Install the all-trusting host verifier
+            HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+        } catch (NoSuchAlgorithmException | KeyManagementException e) {
+            e.printStackTrace();
+        }
     }
 }
