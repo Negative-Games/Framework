@@ -57,6 +57,9 @@ public class HasteBin {
      */
     public HasteBin(@NotNull String binURL) {
         if (!binURL.endsWith("/")) binURL = binURL + "/";
+        if (!binURL.startsWith("https://www")) binURL = "https://www." + binURL;
+        if (!binURL.startsWith("https://")) binURL = "https://" + binURL;
+
         this.binURL = binURL;
     }
 
