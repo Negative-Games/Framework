@@ -56,10 +56,12 @@ import java.util.Map;
 @Getter
 public abstract class BasePlugin extends JavaPlugin {
 
+    private static BasePlugin inst;
     private CommandRepository commandRepository;
 
     @Override
     public void onEnable() {
+        inst = this;
         FrameworkMessage.init();
         new VersionChecker();
 
@@ -151,4 +153,7 @@ public abstract class BasePlugin extends JavaPlugin {
         Arrays.stream(listeners).forEach(listener -> pluginManager.registerEvents(listener, this));
     }
 
+    public static BasePlugin getInst() {
+        return inst;
+    }
 }

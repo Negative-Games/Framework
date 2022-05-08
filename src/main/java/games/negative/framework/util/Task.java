@@ -25,6 +25,7 @@
 
 package games.negative.framework.util;
 
+import games.negative.framework.BasePlugin;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,6 +47,15 @@ public class Task {
     }
 
     /**
+     * Run a task asynchronously
+     * @param runnable {@link Runnable} instance
+     * @return {@link BukkitTask} instance
+     */
+    public BukkitTask async(@NotNull Runnable runnable) {
+        return Bukkit.getScheduler().runTaskAsynchronously(BasePlugin.getInst(), runnable);
+    }
+
+    /**
      * Run a delayed task asynchronously
      *
      * @param plugin   {@link JavaPlugin} instance
@@ -55,6 +65,16 @@ public class Task {
      */
     public BukkitTask asyncDelayed(@NotNull JavaPlugin plugin, final long delay, @NotNull Runnable runnable) {
         return Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, runnable, delay);
+    }
+
+    /**
+     * Run a delayed task asynchronously
+     * @param delay   Delay in ticks
+     * @param runnable {@link Runnable} instance
+     * @return {@link BukkitTask} instance
+     */
+    public BukkitTask asyncDelayed(final long delay, @NotNull Runnable runnable) {
+        return Bukkit.getScheduler().runTaskLaterAsynchronously(BasePlugin.getInst(), runnable, delay);
     }
 
     /**
@@ -71,6 +91,17 @@ public class Task {
     }
 
     /**
+     * Run a repeating task asynchronously
+     * @param delay   Delay in ticks
+     * @param interval Interval the task gets repeated in ticks
+     * @param runnable {@link Runnable} instance
+     * @return {@link BukkitTask} instance
+     */
+    public BukkitTask asyncRepeating(final long delay, final long interval, @NotNull Runnable runnable) {
+        return Bukkit.getScheduler().runTaskTimerAsynchronously(BasePlugin.getInst(), runnable, delay, interval);
+    }
+
+    /**
      * Run a task
      *
      * @param plugin   {@link JavaPlugin} instance
@@ -79,6 +110,15 @@ public class Task {
      */
     public BukkitTask task(@NotNull JavaPlugin plugin, @NotNull Runnable runnable) {
         return Bukkit.getScheduler().runTask(plugin, runnable);
+    }
+
+    /**
+     * Run a task
+     * @param runnable {@link Runnable} instance
+     * @return {@link BukkitTask} instance
+     */
+    public BukkitTask task(@NotNull Runnable runnable) {
+        return Bukkit.getScheduler().runTask(BasePlugin.getInst(), runnable);
     }
 
     /**
@@ -94,6 +134,16 @@ public class Task {
     }
 
     /**
+     * Run a delayed task
+     * @param delay   Delay in ticks
+     * @param runnable {@link Runnable} instance
+     * @return {@link BukkitTask} instance
+     */
+    public BukkitTask taskDelayed(final long delay, @NotNull Runnable runnable) {
+        return Bukkit.getScheduler().runTaskLater(BasePlugin.getInst(), runnable, delay);
+    }
+
+    /**
      * Run a repeating task
      *
      * @param plugin   {@link JavaPlugin} instance
@@ -104,6 +154,17 @@ public class Task {
      */
     public BukkitTask taskRepeating(@NotNull JavaPlugin plugin, final long delay, final long interval, @NotNull Runnable runnable) {
         return Bukkit.getScheduler().runTaskTimer(plugin, runnable, delay, interval);
+    }
+
+    /**
+     * Run a repeating task
+     * @param delay   Delay in ticks
+     * @param interval Interval the task gets repeated in ticks
+     * @param runnable {@link Runnable} instance
+     * @return {@link BukkitTask} instance
+     */
+    public BukkitTask taskRepeating(final long delay, final long interval, @NotNull Runnable runnable) {
+        return Bukkit.getScheduler().runTaskTimer(BasePlugin.getInst(), runnable, delay, interval);
     }
 
 }

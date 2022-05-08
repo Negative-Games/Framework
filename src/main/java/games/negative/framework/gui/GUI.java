@@ -59,7 +59,7 @@ import java.util.function.Function;
 public class GUI implements MenuBase {
 
     private final int rows;
-    private final String title;
+    private String title;
     private final ArrayList<MenuItem> items;
 
     private final HashMap<Player, Inventory> activeInventories;

@@ -26,7 +26,7 @@ import java.util.function.Function;
 @Getter
 @Setter
 public class DropperGUI implements MenuBase {
-    private final String title;
+    private String title;
     private final ArrayList<MenuItem> items;
 
     private final HashMap<Player, Inventory> activeInventories;

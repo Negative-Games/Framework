@@ -52,7 +52,7 @@ import java.util.function.Function;
 @Setter
 public class HopperGUI implements MenuBase {
 
-    private final String title;
+    private String title;
     private final ArrayList<MenuItem> items;
 
     private final HashMap<Player, Inventory> activeInventories;
@@ -212,5 +212,6 @@ public class HopperGUI implements MenuBase {
             }
         });
     }
+
 
 }
