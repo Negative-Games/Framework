@@ -90,3 +90,7 @@ def id = "MyPlugin" // Replace with the plugin name
 def group = 'games.negative' // Replace with your group id
 def version = '1.0-SNAPSHOT' // Replace with the version
 ```
+
+
+
+I wonder if I can push this to master :)
