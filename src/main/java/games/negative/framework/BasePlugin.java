@@ -30,6 +30,7 @@ import games.negative.framework.command.repository.CommandRepository;
 import games.negative.framework.command.repository.FrameworkCommandRepository;
 import games.negative.framework.command.shortcommand.provider.ShortCommandsListener;
 import games.negative.framework.cooldown.Cooldowns;
+import games.negative.framework.gui.internal.SignMenuFactory;
 import games.negative.framework.gui.listener.GUIListener;
 import games.negative.framework.inputlistener.InputListener;
 import games.negative.framework.message.FrameworkMessage;
@@ -58,6 +59,7 @@ public abstract class BasePlugin extends JavaPlugin {
 
     private static BasePlugin inst;
     private CommandRepository commandRepository;
+    public static SignMenuFactory sign;
 
     @Override
     public void onEnable() {
@@ -75,6 +77,8 @@ public abstract class BasePlugin extends JavaPlugin {
         Cooldowns.startInternalCooldowns(this);
 
         commandRepository = new FrameworkCommandRepository();
+
+        sign = new SignMenuFactory(this);
     }
 
     /**
