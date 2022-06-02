@@ -34,6 +34,7 @@ import games.negative.framework.gui.listener.GUIListener;
 import games.negative.framework.inputlistener.InputListener;
 import games.negative.framework.message.FrameworkMessage;
 import games.negative.framework.util.FileLoader;
+import games.negative.framework.util.player.internal.VanishListener;
 import games.negative.framework.util.version.VersionChecker;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -50,13 +51,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.UUID;
 
 @Getter
 public abstract class BasePlugin extends JavaPlugin {
 
     private CommandRepository commandRepository;
+    // List of vanished player UUIDs
+    private final ArrayList<UUID> vanished = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -67,7 +72,8 @@ public abstract class BasePlugin extends JavaPlugin {
                 new GUIListener(),
                 new ShortCommandsListener(),
                 new InputListener(),
-                new CommandLogListener()
+                new CommandLogListener(),
+                new VanishListener()
         );
 
         Cooldowns.startInternalCooldowns(this);
