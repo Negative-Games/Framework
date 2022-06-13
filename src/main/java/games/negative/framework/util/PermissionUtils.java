@@ -13,16 +13,6 @@ import org.jetbrains.annotations.NotNull;
 public class PermissionUtils {
 
     /**
-     * Checks if a player has a permission
-     * @param player The player you want to check
-     * @param permission The permission you want to check
-     * @return true or false
-     */
-    public static boolean hasPermission(@NonNull Player player, @NonNull String permission) {
-        return player.hasPermission(permission);
-    }
-
-    /**
      * Applies a permission to a player
      * @param player The player you want to apply the permission to
      * @param permission The permission you want to apply
