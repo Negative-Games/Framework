@@ -19,7 +19,7 @@ public class PermissionUtils {
      * @return true or false
      * @author Seailz
      */
-    public boolean hasPermission(@NonNull Player player, @NonNull String permission) {
+    public static boolean hasPermission(@NonNull Player player, @NonNull String permission) {
         return player.hasPermission(permission);
     }
 
@@ -29,7 +29,7 @@ public class PermissionUtils {
      * @param permission The permission you want to apply
      * @author Seailz
      */
-    public void applyPermission(@NotNull Player player, @NotNull String permission) {
+    public static void applyPermission(@NotNull Player player, @NotNull String permission) {
         player.addAttachment(BasePlugin.getInst(), permission, true);
     }
 
@@ -39,7 +39,7 @@ public class PermissionUtils {
      * @param permission The permission you want to unset
      * @author Seailz
      */
-    public void unsetPermission(@NotNull Player player, @NotNull String permission) {
+    public static void unsetPermission(@NotNull Player player, @NotNull String permission) {
         for (PermissionAttachmentInfo o : player.getEffectivePermissions()) {
             if (o.getPermission().equals(permission)) {
                 player.removeAttachment(o.getAttachment());
