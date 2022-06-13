@@ -1,4 +1,4 @@
-package games.negative.framework.util.permission;
+package games.negative.framework.util;
 
 import games.negative.framework.BasePlugin;
 import lombok.NonNull;
