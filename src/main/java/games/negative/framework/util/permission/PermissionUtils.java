@@ -40,9 +40,9 @@ public class PermissionUtils {
      * @author Seailz
      */
     public static void unsetPermission(@NotNull Player player, @NotNull String permission) {
-        for (PermissionAttachmentInfo o : player.getEffectivePermissions()) {
-            if (o.getPermission().equals(permission)) {
-                player.removeAttachment(o.getAttachment());
+        for (PermissionAttachmentInfo node : player.getEffectivePermissions()) {
+            if (node.getPermission().equals(permission)) {
+                player.removeAttachment(node.getAttachment());
                 break;
             }
         }
