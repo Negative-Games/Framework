@@ -1,13 +1,12 @@
 package games.negative.framework.util;
 
 import games.negative.framework.BasePlugin;
-import lombok.NonNull;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A way to interact with Bukkit's permission API with ease.
+ * A way to interact with Bukkit's Permission API with ease.
  * @author Seailz
  */
 public class PermissionUtils {
