@@ -34,12 +34,12 @@ public class PermissionUtils {
     }
 
     /**
-     * Un-sets a permission from a player
-     * @param player The player you want to unset the permission from
-     * @param permission The permission you want to unset
+     * Removes a permission from a player
+     * @param player The player you want to remove the permission from
+     * @param permission The permission you want to remove
      * @author Seailz
      */
-    public static void unsetPermission(@NotNull Player player, @NotNull String permission) {
+    public static void removePermission(@NotNull Player player, @NotNull String permission) {
         for (PermissionAttachmentInfo node : player.getEffectivePermissions()) {
             if (node.getPermission().equals(permission)) {
                 player.removeAttachment(node.getAttachment());
