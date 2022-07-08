@@ -164,7 +164,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://seailz.com"><img src="https://avatars.githubusercontent.com/u/81972974?v=4?s=100" width="100px;" alt=""/><br /><sub><b>seailz</b></sub></a><br /><a href="https://github.com/Negative-Games/Framework/commits?author=seailz" title="Code">💻</a></td>
+    <td align="center"><a href="https://seailz.com"><img src="https://avatars.githubusercontent.com/u/81972974?v=4?s=100" width="100px;" alt=""/><br /><sub><b>seailz</b></sub></a><br /><a href="https://github.com/Negative-Games/Framework/commits?author=seailz" title="Code">💻</a> <a href="https://github.com/Negative-Games/Framework/issues?q=author%3Aseailz" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
