@@ -30,6 +30,7 @@ package games.negative.framework.gui;
 import games.negative.framework.gui.base.MenuBase;
 import games.negative.framework.gui.holder.HopperGUIHolder;
 import games.negative.framework.gui.internal.MenuItem;
+import games.negative.framework.util.Utils;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -96,7 +97,7 @@ public class HopperGUI implements MenuBase {
      */
     public void open(@NotNull Player player) {
         HopperGUIHolder holder = new HopperGUIHolder(this);
-        Inventory inv = Bukkit.createInventory(holder, InventoryType.HOPPER, ChatColor.translateAlternateColorCodes('&', title));
+        Inventory inv = Bukkit.createInventory(holder, InventoryType.HOPPER, Utils.color(title));
 
         player.openInventory(inv);
         activeInventories.put(player, inv);
