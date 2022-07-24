@@ -30,7 +30,6 @@ package games.negative.framework.command;
 import games.negative.framework.command.annotation.CommandInfo;
 import games.negative.framework.command.base.CommandBase;
 import games.negative.framework.command.event.SubCommandLogEvent;
-import games.negative.framework.command.shortcommand.ShortCommands;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -51,9 +50,14 @@ import java.util.function.Consumer;
  *
  * @author Negative
  * @apiNote Must be added to a {@link Command} class in order to work!
+ *
+ * @deprecated The SubCommand class will no longer be supported.
+ * To use "subcommands", you can instead extend the {@link Command} class and add the
+ * command to the subcommand list.
  */
 @Getter
 @Setter
+@Deprecated
 public abstract class SubCommand implements CommandBase {
 
     // subcommands of subcommands lol
@@ -117,10 +121,10 @@ public abstract class SubCommand implements CommandBase {
                 setPlayerOnly(true);
             }
 
-            List<String> shortCmds = new ArrayList<>(Arrays.asList(annotation.shortCommands()));
-            if (!shortCmds.get(0).isEmpty()) {
-                ShortCommands.getInstance().addShortSubCommand(this, annotation.shortCommands());
-            }
+//            List<String> shortCmds = new ArrayList<>(Arrays.asList(annotation.shortCommands()));
+//            if (!shortCmds.get(0).isEmpty()) {
+//                ShortCommands.getInstance().addShortSubCommand(this, annotation.shortCommands());
+//            }
 
             List<String> paramList = new ArrayList<>(Arrays.asList(annotation.args()));
             if (!paramList.get(0).isEmpty()) {
