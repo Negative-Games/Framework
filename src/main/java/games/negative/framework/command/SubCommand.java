@@ -54,6 +54,7 @@ import java.util.function.Consumer;
  */
 @Getter
 @Setter
+@Deprecated
 public abstract class SubCommand implements CommandBase {
 
     // subcommands of subcommands lol
