@@ -99,24 +99,20 @@ public abstract class Command extends org.bukkit.command.Command implements Comm
             if (!annotation.description().isEmpty())
                 setDescription(annotation.description());
 
-            List<String> a = new ArrayList<>(Arrays.asList(annotation.aliases()));
-            // There will always be an empty index even if no arguments are
-            // set. So the way you identify if there are actual arguments in the command
-            // is you check if the first index is empty.
-            if (!a.get(0).isEmpty()) {
-                setAliases(a);
-            }
-
             if (!annotation.permission().isEmpty())
                 setPermissionNode(annotation.permission());
 
-            List<String> shortCmds = new ArrayList<>(Arrays.asList(annotation.shortCommands()));
-            shortCommands.addAll(shortCmds);
+            String[] annoAliases = annotation.aliases();
+            if (!annoAliases[0].isEmpty())
+                setAliases(Arrays.asList(annoAliases));
 
-            List<String> paramList = new ArrayList<>(Arrays.asList(annotation.args()));
-            if (!paramList.get(0).isEmpty()) {
-                this.params = annotation.args();
-            }
+            String[] annoShort = annotation.shortCommands();
+            if (!annoShort[0].isEmpty())
+                setShortCommands(Arrays.asList(annoShort));
+
+            String[] annoArgs = annotation.args();
+            if (!annoArgs[0].isEmpty())
+                setParams(annoArgs);
         }
 
     }
