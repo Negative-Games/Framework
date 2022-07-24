@@ -59,6 +59,7 @@ public interface CommandBase {
      * @param sender     The sender of the command.
      * @param args       The arguments of the command.
      */
+    @Deprecated
     void runSubCommand(SubCommand subCommand, CommandSender sender, String[] args);
 
     /**
@@ -112,6 +113,7 @@ public interface CommandBase {
      *
      * @param subCommands The subcommands to add.
      */
+    @Deprecated
     void addSubCommands(SubCommand... subCommands);
 
     /**
@@ -180,6 +182,7 @@ public interface CommandBase {
      * @return The subcommands of the command.
      */
     @NotNull
+    @Deprecated
     List<SubCommand> getSubCommands();
 
     /**

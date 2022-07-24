@@ -30,7 +30,6 @@ package games.negative.framework.command;
 import games.negative.framework.command.annotation.CommandInfo;
 import games.negative.framework.command.base.CommandBase;
 import games.negative.framework.command.event.CommandLogEvent;
-import games.negative.framework.command.shortcommand.ShortCommands;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -49,12 +48,16 @@ import java.util.function.Consumer;
 @Getter
 @Setter
 public abstract class Command extends org.bukkit.command.Command implements CommandBase {
+
+    @Deprecated
     private final List<SubCommand> subCommands = new ArrayList<>();
+    private final List<Command> commands = new ArrayList<>();
 
     public boolean consoleOnly = false;
     public boolean playerOnly = false;
     public boolean disabled = false;
     public String permissionNode = "";
+    public List<String> shortCommands = new ArrayList<>();
     private String[] params;
     private TabCompleter completer;
     private Consumer<CommandLogEvent> logEvent;
@@ -108,9 +111,7 @@ public abstract class Command extends org.bukkit.command.Command implements Comm
                 setPermissionNode(annotation.permission());
 
             List<String> shortCmds = new ArrayList<>(Arrays.asList(annotation.shortCommands()));
-            if (!shortCmds.get(0).isEmpty()) {
-                ShortCommands.getInstance().addShortCommand(this, annotation.shortCommands());
-            }
+            shortCommands.addAll(shortCmds);
 
             List<String> paramList = new ArrayList<>(Arrays.asList(annotation.args()));
             if (!paramList.get(0).isEmpty()) {
